@@ -1,13 +1,19 @@
-import { connection as sql } from './db.connection.js';
+import { connection as sql } from '../database/db.connection.js';
 
 export const PlantService = {
     create: async(newPost, result) => {
         sql.query("INSERT INTO posts SET ?", newPost, (err, res) => {
             if (err) result(err, null);
-            else result(null, { id: res.postId, ...newPost });
+            else result(null, { id: res.plantId, ...newPost });
         });
     },
-/*    findById: async(postId, result) => {
+    getAll: async(result) => {
+        sql.query("SELECT * FROM posts", (err, res) => {
+            if (err) result(null, err);
+            else result(null, res);
+        });
+    },
+    findById: async(postId, result) => {
         sql.query(
             `SELECT * FROM posts WHERE id = ?`, [postId],
             (err, res) => {
@@ -16,12 +22,6 @@ export const PlantService = {
                 else result({ message: "post not found" }, null);
             }
         );
-    },*/
-    getAll: async(result) => {
-        sql.query("SELECT * FROM posts", (err, res) => {
-            if (err) result(null, err);
-            else result(null, res);
-        });
     },
 /*    updateById: async(id, post, result) => {
         sql.query(

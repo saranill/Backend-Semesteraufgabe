@@ -30,6 +30,16 @@ export const Controller = {
         });
     },
 
+    readOne: (req, res) => {
+        PlantService.findById(req.params.plantId, (err, result) => {
+            if (err)
+                res.status(500).send({
+                    message: err.message || "Some error occurred while getting one post",
+                });
+            else res.json(result);
+        });
+    },
+
 /*    delete: (req, res) => {
         PostService.remove(req.params.postId, (err, result) => {
             if (err)
@@ -58,15 +68,5 @@ export const Controller = {
                 else res.json(result);
             }
         );
-    },*/
-
-/*    readOne: (req, res) => {
-        PostService.findById(req.params.postId, (err, result) => {
-            if (err)
-                res.status(500).send({
-                    message: err.message || "Some error occurred while getting one post",
-                });
-            else res.json(result);
-        });
     },*/
 };
