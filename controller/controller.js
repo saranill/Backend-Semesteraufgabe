@@ -8,7 +8,7 @@ export const Controller = {
         PlantService.getAll((err, result) => {
             if (err)
                 res.status(500).send({
-                    message: err.message || "Some error occurred while getting all posts",
+                    message: err.message || "Some error occurred while getting all data",
                 });
             else res.json(result);
         });
@@ -20,8 +20,8 @@ export const Controller = {
                 message: "Content can not be empty!",
             });
         }
-        const post = {...req.body };
-        PlantService.create(post, (err, result) => {
+        const plant = {...req.body };
+        PlantService.create(plant, (err, result) => {
             if (err)
                 res.status(500).send({
                     message: err.message || "Some error occurred while creating the post.",
@@ -41,7 +41,7 @@ export const Controller = {
     },
 
 /*    delete: (req, res) => {
-        PostService.remove(req.params.postId, (err, result) => {
+        PlantService.remove(req.params.plantId, (err, result) => {
             if (err)
                 res.status(500).send({
                     message: err.message || "Some error occurred while delete the post",
@@ -56,10 +56,10 @@ export const Controller = {
                 message: "Content can not be empty!",
             });
         }
-        const post = {...req.body };
-        PostService.updateById(
-            req.params.postId,
-            post,
+        const plant = {...req.body };
+        PlantService.updateById(
+            req.params.plantId,
+            plant,
             (err, result) => {
                 if (err)
                     res.status(500).send({

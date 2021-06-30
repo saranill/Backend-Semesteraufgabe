@@ -2,5 +2,5 @@
 //     HOST: "localhost",
 //     USER: "root",
 //     PASSWORD: "MeinPasswort",
-//     DB: "posts"
+//     DB: "plant"
 // };
