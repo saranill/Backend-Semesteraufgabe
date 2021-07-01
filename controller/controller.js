@@ -10,7 +10,18 @@ export const Controller = {
                 res.status(500).send({
                     message: err.message || "Some error occurred while getting all data",
                 });
-            else res.json(result);
+            else {
+                console.log(result);
+                let arr = [];
+                result.forEach( plant => {
+                    let buff = new Buffer(plant.image, 'base64');
+                    let text = buff.toString('ascii');
+                    //console.log(text);
+                    plant.image = text;
+                    arr.push(plant);
+                });
+                res.json(arr);
+            }
         });
     },
 
